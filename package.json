@@ -14,6 +14,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.46.0",
     "@aws-sdk/util-dynamodb": "^3.46.0",
+    "apollo-datasource-dynamodb": "^1.1.0",
     "apollo-datasource-rest": "^3.5.0",
     "apollo-server-lambda": "^3.6.1",
     "aws-sdk": "^2.1053.0",

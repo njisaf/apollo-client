@@ -13,7 +13,8 @@
       "versionFunctions": true,
       "environment": {
         "SECRET_MESSAGE": "Hello there, Production",
-        "API_TOKEN": "hIwEs0Ix7CmshdNuH66bHtNxSKZYp1Pjz84jsnifFUULOpoGxw"
+        "API_TOKEN": "hIwEs0Ix7CmshdNuH66bHtNxSKZYp1Pjz84jsnifFUULOpoGxw",
+        "JWT_SECRET": "sprungtall123"
       },
       "compiledCloudFormationTemplate": {
         "AWSTemplateFormatVersion": "2010-09-09",
@@ -224,7 +225,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/apollo-lambda-poc/prod/1641769170252-2022-01-09T22:59:30.252Z/apollo-lambda-poc.zip"
+                "S3Key": "serverless/apollo-lambda-poc/prod/1642972317677-2022-01-23T21:11:57.677Z/apollo-lambda-poc.zip"
               },
               "Handler": "s_graphql.handler",
               "Runtime": "nodejs12.x",
@@ -234,7 +235,8 @@
               "Environment": {
                 "Variables": {
                   "SECRET_MESSAGE": "Hello there, Production",
-                  "API_TOKEN": "hIwEs0Ix7CmshdNuH66bHtNxSKZYp1Pjz84jsnifFUULOpoGxw"
+                  "API_TOKEN": "hIwEs0Ix7CmshdNuH66bHtNxSKZYp1Pjz84jsnifFUULOpoGxw",
+                  "JWT_SECRET": "sprungtall123"
                 }
               },
               "Role": {
@@ -248,14 +250,14 @@
               "GraphqlLogGroup"
             ]
           },
-          "GraphqlLambdaVersion3USVqvqBDoiVic07QDxNLLIVGY9kd1LHC5doZwmie8": {
+          "GraphqlLambdaVersionRnzCUksLw3EfPFnaQb5hxRQwfqDJcQLSNcsZOkRmE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GraphqlLambdaFunction"
               },
-              "CodeSha256": "k94966N2MURN57UreaiFEtANwztJknh2uYsxaiXi09Y="
+              "CodeSha256": "KaM/Zyw4JV+9WkveaaR/3dfstEIfTeIBzLfYJ9hv7Lw="
             }
           },
           "ApiGatewayRestApi": {
@@ -422,7 +424,7 @@
               "GraphqlLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1641769156616": {
+          "ApiGatewayDeployment1642972296551": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -582,7 +584,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/apollo-lambda-poc/prod/1641769170252-2022-01-09T22:59:30.252Z/custom-resources.zip"
+                "S3Key": "serverless/apollo-lambda-poc/prod/1642972317677-2022-01-23T21:11:57.677Z/custom-resources.zip"
               },
               "FunctionName": "apollo-lambda-poc-prod-custom-resource-apigw-cw-role",
               "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -644,7 +646,7 @@
           "GraphqlLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GraphqlLambdaVersion3USVqvqBDoiVic07QDxNLLIVGY9kd1LHC5doZwmie8"
+              "Ref": "GraphqlLambdaVersionRnzCUksLw3EfPFnaQb5hxRQwfqDJcQLSNcsZOkRmE"
             },
             "Export": {
               "Name": "sls-apollo-lambda-poc-prod-GraphqlLambdaFunctionQualifiedArn"
@@ -837,7 +839,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GraphqlLambdaVersion3USVqvqBDoiVic07QDxNLLIVGY9kd1LHC5doZwmie8"
+        "versionLogicalId": "GraphqlLambdaVersionRnzCUksLw3EfPFnaQb5hxRQwfqDJcQLSNcsZOkRmE"
       }
     },
     "configValidationMode": "warn",
@@ -870,7 +872,7 @@
     "appUid": "M03Xs74gYb38QGc2rR"
   },
   "package": {
-    "artifactDirectoryName": "serverless/apollo-lambda-poc/prod/1641769170252-2022-01-09T22:59:30.252Z",
+    "artifactDirectoryName": "serverless/apollo-lambda-poc/prod/1642972317677-2022-01-23T21:11:57.677Z",
     "artifact": ""
   }
 }
