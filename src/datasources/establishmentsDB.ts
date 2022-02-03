@@ -1,51 +1,42 @@
-import { DynamoDBDataSource } from "apollo-datasource-dynamodb";
-import { DocumentClient } from "aws-sdk/clients/dynamodb";
+import { RESTDataSource, RequestOptions } from "apollo-datasource-rest";
+import { environment } from '../environment';
 
-type Establishment = {
-    id: number,
-    name: string
-}
+const basePath = "l94gia19j0.execute-api.us-east-1.amazonaws.com/prod";
 
-const tableName = "establishments";
-const tableKeySchema: DocumentClient.KeySchema = [
-    {
-        AttributeName: "id",
-        KeyType: "HASH",
-    },
-];
-
-class EstablishmentsDB extends DynamoDBDataSource<Establishment> {
-
-  private readonly ttl = 30 * 60; // 30minutes
-
-  constructor(client?: DocumentClient) {
-    super(tableName, tableKeySchema, undefined, client);
+class EstablishmentDB extends RESTDataSource {
+  constructor() {
+    // Always call super()
+    super();
+    // Sets the base URL for the REST API
+    this.baseURL = `https://${basePath}/`;
+  }
+  willSendRequest(request: RequestOptions) {
+    request.headers.set(
+      "Accept",
+      "*/*"
+    );
+    request.headers.set(
+      "content-type",
+      "application/json"
+    );
   }
 
-  async getEstablishment(id: string): Promise<Establishment> {
-    const getItemInput: DocumentClient.GetItemInput = {
-      TableName: tableName,
-      ConsistentRead: true,
-      Key: { id },
-    };
-    return this.getItem(getItemInput, this.ttl);
+  async getEstablishment(id: string) {
+      console.log('id: ', id);
+    return await this.get(`establishment?id=${encodeURIComponent(id)}`);
   }
 
-  async getAllEstablishments(): Promise<Establishment[]> {
-    const scanInput: DocumentClient.ScanInput = {
-      TableName: tableName,
-      ConsistentRead: true,
-    };
-    return this.scan(scanInput, this.ttl);
-  }
-
-  async createEstablishment(id: number, name: string): Promise<Establishment> {
-      const newEstablishment: Establishment = {
-        id,
-        name
-      };
-      return await this.put(newEstablishment, this.ttl);
+  async createEstablishment(id: string, name: string) {
+      const postRes = await this.post(
+          "establishment",
+          {
+              id,
+              name
+            }
+        )
+    console.log('postRes: ', postRes);
+    return postRes.Item;
   }
 }
 
-export default EstablishmentsDB;
+export default EstablishmentDB;

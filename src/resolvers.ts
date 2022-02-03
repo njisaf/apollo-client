@@ -6,15 +6,16 @@ export const resolvers = {
       return `${environment.secretMessage}. Your message is ${args.search}`;
     },
     getEstablishment: async (parent: any, args: any, context: any, info: any) => {
-      return context.dataSources.establishmentsDB.getEstablishment(args.id);
+      console.log('args: ', args);
+      return await context.dataSources.establishmentsDB.getEstablishment(args.id);
     },
     getAllEstablishments: async (parent: any, args: any, context: any, info: any) => {
-      return context.dataSources.establishmentsDB.getAllEstablishments();
+      return await context.dataSources.establishmentsDB.getAllEstablishments();
     },
   },
   Mutation: {
     createEstablishment: async (parent: any, args: any, context: any, info: any) => {
-      return context.dataSources.establishmentsDB.createEstablishment(args.id, args.name);
+      return await context.dataSources.establishmentsDB.createEstablishment(args.id, args.name);
     }
   }
 };
