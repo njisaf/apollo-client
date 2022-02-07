@@ -1,5 +1,4 @@
 import { RESTDataSource, RequestOptions } from "apollo-datasource-rest";
-import { environment } from '../environment';
 
 const basePath = "l94gia19j0.execute-api.us-east-1.amazonaws.com/prod";
 
@@ -21,18 +20,16 @@ class EstablishmentDB extends RESTDataSource {
     );
   }
 
-  async getEstablishment(id: string) {
-      console.log('id: ', id);
-    return await this.get(`establishment?id=${encodeURIComponent(id)}`);
+  async getEstablishment(dba_name: string) {
+    console.log('dba_name: ', dba_name);
+    return await this.get(`establishment?dba_name=${encodeURIComponent(dba_name)}`);
   }
 
-  async createEstablishment(id: string, name: string) {
+  async createEstablishment(establishment: any) {
+    console.log('establishment: ', establishment);
       const postRes = await this.post(
           "establishment",
-          {
-              id,
-              name
-            }
+          establishment
         )
     console.log('postRes: ', postRes);
     return postRes.Item;
